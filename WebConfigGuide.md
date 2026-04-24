@@ -268,7 +268,7 @@ Recommended values by database engine:
 | `maxretries` | `5` | API call retry attempts |
 | `SiteFor` | `Production` | Environment label |
 | `DaysFree` | `2000` | Free trial days for new users |
-| `version` | `34-00` | DataAI version (do not change) |
+| `version` | `36-00` | DataAI version (do not change) |
 | `dataaidownpay` | `$10` | Download fee (if payments enabled) |
 | `dataaidbpay` | `$100` | Database setup fee |
 | `ACEOLEDBversion` | `Provider=Microsoft.ACE.OLEDB.16.0;` | ACE driver for Excel/Access imports |
