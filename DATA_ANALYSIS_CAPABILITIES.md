@@ -161,27 +161,83 @@ This project can support analysis for:
 - AI-generated explanations of reports and analytical outputs.
 - Scheduled or repeatable reporting workflows.
 
-## ASP.NET Analysis Features That Can Be Programmed
+## Existing ASP.NET Features
 
-The current ASP.NET project can be extended with additional analysis screens, report actions, and reusable VB.NET helper functions. Practical features that fit this codebase include:
+Several analysis and reporting features are already present in the project.
 
-- Custom summary pages for selected reports, tables, or imported files.
-- Automatic profiling of every field in a table, including data type, count, blanks, distinct values, min, max, average, and standard deviation where applicable.
+`SQLquery.aspx` already provides a report SQL query designer with:
+
+- SQL data field selection.
+- Join definition.
+- Filter definition.
+- Sorting.
+- Report parameters.
+- Query saving.
+- Query-based report updates.
+- Links into report data, charts, analytics, exports, and matrix balancing.
+
+`RDLformat.aspx` already provides report formatting and output features with:
+
+- Column order and expressions.
+- Friendly names and formatting functions.
+- Groups and totals.
+- Combined column values.
+- Advanced report designer navigation.
+- Map definition navigation.
+- Data export to Excel, CSV, delimited file, and XML.
+- Report export to Excel, Word, and PDF.
+- Generic report display.
+- Report charts.
+- Overall statistics.
+- Group statistics.
+- Field correlation.
+- Matrix balancing.
+
+`Analytics.aspx` already provides report analytics features with:
+
+- Report data retrieval for analytics.
+- Automatic analytics recalculation.
+- Category/group field selection.
+- Value field selection.
+- Count and count-distinct calculations.
+- Sum, maximum, minimum, average, standard deviation, and value calculations for numeric fields.
+- Generated group analytics records.
+- Correlation display for selected fields.
+- Matrix graph links.
+- Bar, pie, and line graph links.
+- Detail reports with category totals and statistics.
+- Statistics dashboard links.
+- Google chart links.
+- Advanced analytics and matrix-balancing navigation.
+- AI interpretation link for analytical output.
+
+Other existing pages also cover major capabilities:
+
+- `Correlation.aspx` provides dedicated field-correlation analysis and export.
+- `AdvancedAnalytics.aspx` provides matrix balancing and advanced matrix workflows.
+- `MultidimentionalBalancing.aspx` provides multidimensional balancing workflows.
+- `MapReport.aspx` provides map report definition and geographic output workflows.
+- `DataImport.aspx` provides import workflows for CSV, Excel, XML, JSON, Access, and related report creation.
+- `ScheduledImports.aspx`, `ScheduledReports.aspx`, and related calendar/run pages provide scheduled imports and scheduled reporting workflows.
+
+## ASP.NET Analysis Features That Can Still Be Programmed
+
+The current ASP.NET project can still be extended with additional analysis screens, report actions, and reusable VB.NET helper functions. Practical remaining extensions include:
+
+- Automatic profiling of every field in a report or imported dataset, including data type, count, blanks, distinct values, min, max, average, and standard deviation where applicable.
 - Data quality checks for missing values, duplicate records, invalid dates, out-of-range numbers, inconsistent categories, and suspicious text values.
-- Drill-down reports from dashboards and chart points into the underlying records.
-- Comparison reports between two periods, two groups, two locations, or two imported files.
+- Comparison reports between two periods, two groups, two locations, two queries, or two imported files.
 - Percentage-change analysis, variance analysis, and contribution-to-total analysis.
 - Ranking and top/bottom analysis for categories, customers, products, departments, locations, or other dimensions.
 - Pivot-style cross-tab reports with row fields, column fields, value fields, and aggregation options.
-- Custom correlation pages with thresholds, sorting, filtering, chart links, and export.
 - Time-based summaries by day, week, month, quarter, or year when date fields exist.
 - Moving averages and rolling totals for time-series style reports.
 - Outlier flagging based on standard deviation, percentage difference, or configurable business rules.
-- Geographic dashboards using existing map fields, KML output, GeoChart, and MapChart support.
-- Matrix balancing workflows specialized for a user's own business terms, such as allocation, reconciliation, survey weighting, or target adjustment.
-- Scheduled data imports, scheduled report generation, and scheduled email delivery.
+- Correlation threshold filters and specialized correlation views.
+- Chart recommendation helpers based on selected fields.
+- Map readiness checks for latitude/longitude and KML-ready data.
 - Export packages that include CSV, Excel, report definitions, charts, and analysis notes.
-- AI interpretation buttons for selected reports, charts, maps, correlations, or balancing results.
+- Additional AI interpretation buttons for any new analysis result pages.
 - Admin screens for defining reusable analysis templates and default dashboard layouts.
 
 ## Best Fit
