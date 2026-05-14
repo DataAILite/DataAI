@@ -1,4 +1,4 @@
-Imports System
+﻿Imports System
 Imports System.Configuration
 Imports System.Data
 Imports System.Data.SqlClient
@@ -391,7 +391,7 @@ Partial Class ListOfReports
             End If
 
             trDB.Visible = True
-            HyperLinkHelp.NavigateUrl = "DataAIHelp.aspx?hilt=List_of_Reports"
+            HyperLinkHelp.NavigateUrl = "DataAIHelp.aspx?hilt=List%20of%20Reports"
 
             If Session("UserConnProvider") = "InterSystems.Data.IRISClient" Then
                 'Session("dbname") = GetNamespaceFromConnectionString(Session("UserConnString"))
@@ -770,12 +770,13 @@ Partial Class ListOfReports
                     list.Rows(0).Cells(0).Align = "center"
 
                     ctl = New LinkButton
-                    ctl.Text = "DataAI"
-                    ctl.ID = "DataAI*" & rep
-                    ctl.ToolTip = "Chat with DataAI - Data Analytical Intelligence and AI"
+                    ctl.Text = "analytics dashboard"
+                    ctl.ID = "DataAdmin*" & rep
+                    ctl.ToolTip = "Analytics Dashboard for " & repttl
                     ctl.CssClass = "NodeStyle"
                     ctl.Font.Size = 10
-                    AddHandler ctl.Click, AddressOf btnDataAI_Click
+                    AddHandler ctl.Click, AddressOf btnDataAdmin_Click
+                    list.Rows(0).Cells(1).InnerText = "Analytics Dashboard"
                     list.Rows(i + 1).Cells(1).InnerText = ""
                     list.Rows(i + 1).Cells(1).Controls.Add(ctl)
                     list.Rows(i + 1).Cells(1).Align = "center"
@@ -818,13 +819,13 @@ Partial Class ListOfReports
 
 
                     ctl = New LinkButton
-                    ctl.Text = "charts"
+                    ctl.Text = "market dasgboard"
                     ctl.ID = rep & "+" & repttl
-                    ctl.ToolTip = "Charts for " & repttl
+                    ctl.ToolTip = "Market Dashboard for " & repttl
                     ctl.CssClass = "NodeStyle"
                     ctl.Font.Size = 10
-                    AddHandler ctl.Click, AddressOf btnCharts_Click
-                    list.Rows(0).Cells(11).InnerText = "Charts"
+                    AddHandler ctl.Click, AddressOf btnMarketDashboard_Click
+                    list.Rows(0).Cells(11).InnerText = "Market Dashboard"
                     list.Rows(i + 1).Cells(11).InnerText = ""
                     list.Rows(i + 1).Cells(11).Controls.Add(ctl)
 
@@ -832,7 +833,7 @@ Partial Class ListOfReports
                     If Session("admin") = "super" OrElse (Session("admin") <> "expired" AndAlso dv.Table.Rows(i)("AccessLevel") = "admin") Then
                         'admin for this report to edit, not expired
                         list.Rows(0).Cells(0).InnerHtml = "Chat with AI"
-                        list.Rows(0).Cells(1).InnerHtml = "DataAI"
+                        list.Rows(0).Cells(1).InnerHtml = "Analytics Dashboard"
                         list.Rows(0).Cells(2).InnerHtml = " Show Report "
                         If openforedit = True Then
                             ctl = New LinkButton
@@ -1057,11 +1058,11 @@ Partial Class ListOfReports
         Dim RptTtl As String = Piece(ctl.ID, ";", 2)
         Response.Redirect("ShowReport.aspx?srd=0&REPORT=" & Rpt)
     End Sub
-    Protected Sub btnCharts_Click(sender As Object, e As System.EventArgs)
+    Protected Sub btnMarketDashboard_Click(sender As Object, e As System.EventArgs)
         Dim ctl As LinkButton = CType(sender, LinkButton)
         Dim Rpt As String = Piece(ctl.ID, "+", 1)
         Dim RptTtl As String = Piece(ctl.ID, "+", 2)
-        Response.Redirect("ChartGoogleOne.aspx?Report=" & Rpt & "&x1=&x2=&y1=&fn=Count" & "&frm=ListOfReports")
+        Response.Redirect("MarketAdmin.aspx?Report=" & Rpt & "&frm=ListOfReports")
     End Sub
     Protected Sub btnShow_Click(sender As Object, e As System.EventArgs)
         Dim ctl As LinkButton = CType(sender, LinkButton)
@@ -1084,6 +1085,13 @@ Partial Class ListOfReports
         'Dim RptTtlToShow As String = Piece(ctl.ID, "*", 2)
         Session("REPORTID") = Rpt
         Response.Redirect("ShowReport.aspx?srd=16&Report=" & Rpt, False)
+    End Sub
+    Protected Sub btnDataAdmin_Click(sender As Object, e As System.EventArgs)
+        Dim ctl As LinkButton = CType(sender, LinkButton)
+        Dim Rpt As String = Piece(ctl.ID, "*", 2)
+        Session("REPORTID") = Rpt
+        Session("REPTITLE") = ctl.ToolTip.Replace("Analytics Dashboard for ", "")
+        Response.Redirect("DataAdmin.aspx?Report=" & Server.UrlEncode(Rpt), False)
     End Sub
     Protected Sub ButtonCreateReport_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles ButtonCreateReport.Click
         Dim SQLq As String
