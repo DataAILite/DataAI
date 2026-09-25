@@ -9383,6 +9383,68 @@ Public Module mFunctions
         End Try
         Return ret
     End Function
+    Public Function MinimumDepartureAdjustment(ByVal bal As Double(,), ByVal srt As Double(,), ByVal u As Integer, ByVal v As Integer, ByRef er As String) As Double(,)
+        'srt - starting matrix, bal - balanced matrix, u,v - indexes of the off-diagonal parts to adjust
+        Dim a, b, P, Q, d, t As Double
+        Dim i, j As Integer
+        a = 0
+        b = 0
+        d = 0
+        P = 0
+        Q = 0
+        t = 1
+        Try
+            'top right corner
+            For i = 0 To u - 1
+                For j = v To bal.GetLength(1) - 1
+                    a = a + srt(i, j)
+                    P = P + bal(i, j)
+                Next
+            Next
+            'left bottom corner
+            For i = u To bal.GetLength(0) - 1
+                For j = 0 To v - 1
+                    b = b + srt(i, j)
+                    Q = Q + bal(i, j)
+                Next
+            Next
+            d = a - b
+            If P = 0 AndAlso a = 0 Then
+                If Q > 0 AndAlso b > 0 Then
+                    t = Q / b
+                Else
+                    t = 1
+                End If
+            ElseIf P > 0 AndAlso Q = 0 Then
+                t = a / P
+            Else
+                If d = 0 Then
+                    t = Sqrt(Q / P)
+                ElseIf d < 0 Then
+                    t = (2 * Q) / (Sqrt(d ^ 2 + 4 * P * Q) - d)
+                Else
+                    t = (d + Sqrt(d ^ 2 + 4 * P * Q)) / (2 * P)
+                End If
+            End If
+            'top right corner
+            For i = 0 To u - 1
+                For j = v To bal.GetLength(1) - 1
+                    bal(i, j) = t * bal(i, j)
+                Next
+            Next
+            'left bottom corner
+            For i = u To bal.GetLength(0) - 1
+                For j = 0 To v - 1
+                    bal(i, j) = (1 / t) * bal(i, j)
+                Next
+            Next
+            Return bal
+
+        Catch ex As Exception
+            er = "ERROR!! " & ex.Message
+        End Try
+
+    End Function
     Public Function MakeDataTableFromSumsOfRowsCols(ByVal a As Double(,), ByRef c As Double(), ByRef d As Double(), ByVal x1 As String, ByVal x2 As String, ByVal y1 As String, ByRef x1vals() As String, ByRef x2vals() As String, Optional ByRef er As String = "", Optional ByVal fnc As String = "") As DataTable
         Dim ret As String = String.Empty
         Dim i As Integer = 0

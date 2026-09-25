@@ -889,6 +889,12 @@ Partial Class AdvancedAnalytics
         ret = AdjustMatrixByOverallSum(b, sma)
         ret = CanTargetMatrixBalancedFromStartingOne(a, b, l, q, er, x, dtk, u, v)
 
+        If u > 0 AndAlso v > 0 Then
+            'partial balancing matrix adjustment for minimum departure from the starting off-diagonal cells
+            x = MinimumDepartureAdjustment(x, a, u, v, er)
+        End If
+
+
         'adjust to original target
         If chkAdjustByStart.Checked = False Then  'adjust by target sums
             ret = ret & AdjustMatrixByOverallSum(x, smb)
@@ -963,8 +969,8 @@ Partial Class AdvancedAnalytics
             GridView2.Rows(GridView2.Rows.Count - 1).Font.Bold = True
         End If
 
-        Dim dtbal As DataTable = MakeDataTableFromMatrix(x, x1, x2, y1, ax1vals, ax2vals, er, fnf2)
 
+        Dim dtbal As DataTable = MakeDataTableFromMatrix(x, x1, x2, y1, ax1vals, ax2vals, er, fnf2)
 
 
         If Not dtbal Is Nothing Then
@@ -1551,6 +1557,12 @@ Partial Class AdvancedAnalytics
         ret = AdjustMatrixByOverallSum(b, sma)
         ret = CanTargetMatrixBalancedFromStartingOne(a, b, l, q, er, x, dtk, u, v)
 
+        If u > 0 AndAlso v > 0 Then
+            'partial balancing matrix adjustment for minimum departure from the starting off-diagonal cells
+            x = MinimumDepartureAdjustment(x, a, u, v, er)
+        End If
+
+
         'adjust to original target
         ret = ret & AdjustMatrixByOverallSum(b, smb)
         If chkAdjustByStart.Checked = False Then  'adjust by target sums
@@ -1616,6 +1628,7 @@ Partial Class AdvancedAnalytics
         Else
             dtbal = MakeDataTableFromMatrix(x, x1, x2, y2, ax1vals, ax2vals, er, fnf2)
         End If
+
 
         If Not dtstrt Is Nothing Then
             GridView1.DataSource = dtstrt.DefaultView
@@ -2225,6 +2238,12 @@ Partial Class AdvancedAnalytics
         'a - starting array, c - sums for rows, d -sums for columns, x - balanced array, dtk - coefficients, l -number of steps, q - precision
         ret = CanBalanceMatrixToColRowSums(a, c, d, l, q, er, x, dtk, u, v)
 
+        If u > 0 AndAlso v > 0 Then
+            'partial balancing matrix adjustment for minimum departure from the starting off-diagonal cells
+            x = MinimumDepartureAdjustment(x, a, u, v, er)
+        End If
+
+
         'adjust to original target sums or starting ones
         If Not chkAdjustByStart.Checked Then  'adjust by target sums
 
@@ -2754,6 +2773,12 @@ Partial Class AdvancedAnalytics
                 ret = AdjustMatrixByOverallSum(b, sma)
                 ret = CanTargetMatrixBalancedFromStartingOne(a, b, l, q, er, x, dtk, u, v)
 
+                If u > 0 AndAlso v > 0 Then
+                    'partial balancing matrix adjustment for minimum departure from the starting off-diagonal cells
+                    x = MinimumDepartureAdjustment(x, a, u, v, er)
+                End If
+
+
                 'adjust to original target
                 ret = ret & AdjustMatrixByOverallSum(b, smb)
                 If chkAdjustByStart.Checked = False Then  'adjust by target sums
@@ -2761,6 +2786,8 @@ Partial Class AdvancedAnalytics
                 End If
 
                 Dim dtbal As DataTable = MakeDataTableFromMatrix(x, x1, x2, y2, ax1vals, ax2vals, er, fnf2)
+
+
 
                 If Not c Then
                     If Not dtstrt Is Nothing Then
@@ -3035,6 +3062,12 @@ Partial Class AdvancedAnalytics
                 ret = AdjustMatrixByOverallSum(b, sma)
                 ret = CanTargetMatrixBalancedFromStartingOne(a, b, l, q, er, x, dtk, u, v)
 
+                If u > 0 AndAlso v > 0 Then
+                    'partial balancing matrix adjustment for minimum departure from the starting off-diagonal cells
+                    x = MinimumDepartureAdjustment(x, a, u, v, er)
+                End If
+
+
                 'adjust to original target
                 ret = ret & AdjustMatrixByOverallSum(b, smb)
                 If chkAdjustByStart.Checked = False Then  'adjust by target sums
@@ -3042,6 +3075,8 @@ Partial Class AdvancedAnalytics
                 End If
 
                 Dim dtbal As DataTable = MakeDataTableFromMatrix(x, x1, x2, y1, ax1vals, ax2vals, er, fnf2)
+
+
 
                 If Not c Then
                     If Not dtstrt Is Nothing Then
@@ -3423,6 +3458,11 @@ Partial Class AdvancedAnalytics
                 ret = AdjustMatrixByOverallSum(b, sma)
                 ret = CanTargetMatrixBalancedFromStartingOne(a, b, l, q, er, x, dtk, u, v)
 
+                If u > 0 AndAlso v > 0 Then
+                    'partial balancing matrix adjustment for minimum departure from the starting off-diagonal cells
+                    x = MinimumDepartureAdjustment(x, a, u, v, er)
+                End If
+
                 'adjust to original target
                 ret = ret & AdjustMatrixByOverallSum(b, smb)
                 If chkAdjustByStart.Checked = False Then  'adjust by target sums
@@ -3430,6 +3470,8 @@ Partial Class AdvancedAnalytics
                 End If
 
                 Dim dtbal As DataTable = MakeDataTableFromMatrixMultiColumns(x, x1, ax1vals, ax2vals, q, er)
+
+
 
                 If Not c Then
                     If Not dtstrt Is Nothing Then
@@ -3744,6 +3786,12 @@ Partial Class AdvancedAnalytics
         ret = AdjustMatrixByOverallSum(b, sma)
         ret = CanTargetMatrixBalancedFromStartingOne(a, b, l, q, er, x, dtk, u, v)
 
+        If u > 0 AndAlso v > 0 Then
+            'partial balancing matrix adjustment for minimum departure from the starting off-diagonal cells
+            x = MinimumDepartureAdjustment(x, a, u, v, er)
+        End If
+
+
         'adjust to original target
         If chkAdjustByStart.Checked = False Then  'adjust by target sums
             ret = ret & AdjustMatrixByOverallSum(x, smb)
@@ -3816,8 +3864,10 @@ Partial Class AdvancedAnalytics
             GridView2.Rows(GridView2.Rows.Count - 1).Font.Bold = True
         End If
 
-        Dim dtbal As DataTable = MakeDataTableFromMatrixMultiColumns(x, x1, ax1vals, ax2vals, q, er)
 
+
+
+        Dim dtbal As DataTable = MakeDataTableFromMatrixMultiColumns(x, x1, ax1vals, ax2vals, q, er)
 
 
         If Not dtbal Is Nothing Then
@@ -4340,11 +4390,16 @@ Partial Class AdvancedAnalytics
         'a - starting array, cc - sums for rows, dd -sums for columns, x - balanced array, dtk - coefficients, l -number of steps, q - precision
         ret = CanBalanceMatrixToColRowSums(a, cc, dd, l, q, er, x, dtk, u, v)
 
+        If u > 0 AndAlso v > 0 Then
+            'partial balancing matrix adjustment for minimum departure from the starting off-diagonal cells
+            x = MinimumDepartureAdjustment(x, a, u, v, er)
+        End If
+
+
         'adjust to original target sums or starting ones
         If Not chkAdjustByStart.Checked Then  'adjust by target sums
 
             ret = ret & AdjustMatrixByOverallSum(x, smb)
-
             'restore original sums
             For i = 0 To cst.Length - 1
                 cc(i) = cc(i) * (smb / sma)
@@ -4358,6 +4413,8 @@ Partial Class AdvancedAnalytics
             ret = ret & AdjustMatrixByOverallSum(x, sma)
 
         End If
+
+
 
         'Balancing matrix
         Dim dtbal As DataTable = MakeDataTableFromMatrixMultiColumns(x, x1, ax1vals, ax2vals, q, er)

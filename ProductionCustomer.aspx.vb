@@ -149,18 +149,18 @@ Partial Class ProductionCustomer
 
     Private Function GetLicenseFile(distrMode As String) As String
         Select Case distrMode
-            Case "AWS"       : Return "aws-glue-emr.html"
-            Case "Alteryx"   : Return "alteryx.html"
-            Case "Databricks": Return "databricks.html"
-            Case "DotNet"    : Return "dotnet.html"
-            Case "Google"    : Return "google-cloud-dataproc.html"
-            Case "IRIS"      : Return "intersystems-iris.html"
-            Case "Oracle"    : Return "oracle-aidp-spark.html"
-            Case "PowerBI"   : Return "power-bi.html"
-            Case "SSIS"      : Return "ssis.html"
-            Case "Tableau"   : Return "tableau.html"
-            Case "Talend"    : Return "talend-mulesoft.html"
-            Case Else        : Return "index.html"
+            Case "AWS" : Return "aws-glue-emr.html"
+            Case "Alteryx" : Return "alteryx.html"
+            Case "Databricks" : Return "databricks.html"
+            Case "DotNet" : Return "dotnet.html"
+            Case "Google" : Return "google-cloud-dataproc.html"
+            Case "IRIS" : Return "intersystems-iris.html"
+            Case "Oracle" : Return "oracle-aidp-spark.html"
+            Case "PowerBI" : Return "power-bi.html"
+            Case "SSIS" : Return "ssis.html"
+            Case "Tableau" : Return "tableau.html"
+            Case "Talend" : Return "talend-mulesoft.html"
+            Case Else : Return "index.html"
         End Select
     End Function
 
